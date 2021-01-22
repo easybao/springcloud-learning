@@ -1,6 +1,7 @@
 package com.macro.cloud.service;
 
 import com.macro.cloud.domain.User;
+import com.sun.xml.bind.v2.runtime.unmarshaller.Base64Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,8 +34,15 @@ public class UserService implements UserDetailsService {
         userList.add(new User("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client")));
     }
 
+    /**
+     * 用户自定义 认证, 密码模式,直接获取jwt, 先到这里来
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //这里是spring-security的认证方法, 登录用户携带用户名,密码,到这里根据用户名查库得到用户, password加密后,和库中的密码对比,相同就说明正确
         List<User> findUserList = userList.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
         if (!CollectionUtils.isEmpty(findUserList)) {
             return findUserList.get(0);

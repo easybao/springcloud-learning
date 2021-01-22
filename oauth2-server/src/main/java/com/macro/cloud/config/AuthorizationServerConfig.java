@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 
 /**
- * 认证服务器配置
+ * 认证服务器配置:  用于认证用户的服务器,如果客户端认证通过,发放令牌给客户端,客户端携带令牌取访问 资源服务器,令牌正确,返回资源
  * Created by macro on 2019/9/30.
  */
 @Configuration
@@ -41,7 +41,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("admin")//配置client_id
                 .secret(passwordEncoder.encode("admin123456"))//配置client-secret
-                .accessTokenValiditySeconds(3600)//配置访问token的有效期
+                .accessTokenValiditySeconds(3600)//配置访问token的有效期:1小时
                 .refreshTokenValiditySeconds(864000)//配置刷新token的有效期
                 .redirectUris("http://www.baidu.com")//配置redirect_uri，用于授权成功后跳转
                 .scopes("all")//配置申请的权限范围

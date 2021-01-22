@@ -28,6 +28,6 @@ public class JwtTokenStoreConfig {
 
     @Bean
     public JwtTokenEnhancer jwtTokenEnhancer() {
-        return new JwtTokenEnhancer();
+        return new JwtTokenEnhancer();//增强器注入容器中
     }
 }

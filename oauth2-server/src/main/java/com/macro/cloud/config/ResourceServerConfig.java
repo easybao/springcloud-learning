@@ -6,7 +6,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 /**
- * 资源服务器配置
+ * 资源服务器配置, 如果请求拥有正确的令牌,可以访问资源
  * Created by macro on 2019/9/30.
  */
 @Configuration

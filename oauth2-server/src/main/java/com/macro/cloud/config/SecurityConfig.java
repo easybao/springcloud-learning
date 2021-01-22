@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * SpringSecurity配置
+ * SpringSecurity配置  , 这个是springSecurity的配置,不属于Oauth,
  * Created by macro on 2019/10/8.
  */
 @Configuration
@@ -28,6 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    /**
+     * 拦截请求处理:   "/oauth/**", "/login/**", "/logout/**"
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf()

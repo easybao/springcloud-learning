@@ -17,10 +17,18 @@ import java.nio.charset.StandardCharsets;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    /**
+     * 从请求头中获取令牌,并解析令牌
+     * @param authentication
+     * @param request
+     * @return
+     */
     @GetMapping("/getCurrentUser")
     public Object getCurrentUser(Authentication authentication, HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         String token = StrUtil.subAfter(header, "bearer ", false);
+        //导入jjwt 依赖,使用工具类来解析JWT内容
         return Jwts.parser()
                 .setSigningKey("test_key".getBytes(StandardCharsets.UTF_8))
                 .parseClaimsJws(token)
